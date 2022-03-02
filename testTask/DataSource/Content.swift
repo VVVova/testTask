@@ -6,14 +6,17 @@
 //
 
 import Foundation
+protocol dataSourceProtocol{
+    func dataSourceIsLoaded(articles:[Articles])
+}
 class Content {
-    var queue = DispatchQueue.init(label: "getContent",qos: .unspecified)
-    var dataSource : [Articles] = [Articles]()
+    var dataSourseDelegate : dataSourceProtocol?
+    var dataSource : [Articles] = []
+    var dataImges : [Data] = []
     let api = URL.init(string: "https://newsapi.org/v2/everything?q=Apple&from=2022-03-01&sortBy=popularity&apiKey=11bbc0dc963743ea8ed55c3bfab9e5de")
-    func getData(){
-        queue.async {
+    func getData(comp: @escaping ([Articles]) ->()){
             if let url = self.api{
-                URLSession.shared.dataTask(with: url) { data, response, error in
+                URLSession.shared.dataTask(with: url) { [self] data, response, error in
                     guard let data = data,error == nil else {
                         print("Error")
                         return
@@ -27,13 +30,34 @@ class Content {
                     guard let json = response else{
                         return
                     }
-                    print(json.articles)
-                    self.dataSource = json.articles
+                    print(json.status)
+                    dataImges = loadImages(articles: json.articles)
+                    dataSourseDelegate?.dataSourceIsLoaded(articles: json.articles)
+                    comp(json.articles)
                 }.resume()
             }
+    }
+    func loadImages(articles:[Articles])->[Data]{
+        var images : [Data] = [Data]()
+        for i in articles{
+            if let urlImage = i.urlToImage{
+                getData(from: urlImage) { data, response, error in
+                    guard let data = data, error == nil else { return }
+                    print(response?.suggestedFilename ?? urlImage.lastPathComponent)
+                    print("Download Finished")
+                    // always update the UI from the main thread
+                    images.append(data)
+                }
+            }
         }
+        return images
+    }
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     init(){
-        getData()
+        getData(comp: { [self] articles in
+            dataSource = articles
+        })
     }
 }

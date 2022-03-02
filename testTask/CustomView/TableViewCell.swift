@@ -14,7 +14,28 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var author: UILabel!
     @IBOutlet weak var descpript: UILabel!
     @IBOutlet weak var imageCon: UIImageView!
+    @IBOutlet weak var source: UILabel!
     
+    var imageUrl :URL?{
+        didSet{
+            imageCon.image = nil
+            updateUI()
+        }
+    }
+   static var imageData : Data? = nil
+    private func updateUI(){
+        if let url = imageUrl{
+            DispatchQueue.global(qos: .userInteractive).async{
+                let conUrl = try? Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    if let imageData = conUrl{
+                        self.imageCon.image = UIImage.init(data: imageData)
+                        TableViewCell.imageData = imageData
+                    }
+                }
+            }
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
