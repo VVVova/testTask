@@ -22,6 +22,8 @@
 		AF283A9127CE93CF000FF639 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF283A9027CE93CF000FF639 /* DataModel.swift */; };
 		AF283A9827CF8851000FF639 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF283A9727CF8851000FF639 /* WebViewViewController.swift */; };
 		AF283A9B27CF92A3000FF639 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF283A9927CF92A3000FF639 /* Model.xcdatamodeld */; };
+		AF283A9D27CF97DD000FF639 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF283A9C27CF97DD000FF639 /* DataBase.swift */; };
+		AF283A9F27CFB17B000FF639 /* SelectedArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF283A9E27CFB17B000FF639 /* SelectedArticlesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		AF283A9027CE93CF000FF639 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		AF283A9727CF8851000FF639 /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		AF283A9A27CF92A3000FF639 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		AF283A9C27CF97DD000FF639 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		AF283A9E27CFB17B000FF639 /* SelectedArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedArticlesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 			children = (
 				AF283A9027CE93CF000FF639 /* DataModel.swift */,
 				AF283A8E27CE9377000FF639 /* Content.swift */,
+				AF283A9C27CF97DD000FF639 /* DataBase.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 			children = (
 				AF283A5327CE6E76000FF639 /* ViewController.swift */,
 				AF283A9727CF8851000FF639 /* WebViewViewController.swift */,
+				AF283A9E27CFB17B000FF639 /* SelectedArticlesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -305,6 +311,8 @@
 				AF283A5427CE6E76000FF639 /* ViewController.swift in Sources */,
 				AF283A8C27CE8CE3000FF639 /* TableViewCell.swift in Sources */,
 				AF283A9B27CF92A3000FF639 /* Model.xcdatamodeld in Sources */,
+				AF283A9F27CFB17B000FF639 /* SelectedArticlesViewController.swift in Sources */,
+				AF283A9D27CF97DD000FF639 /* DataBase.swift in Sources */,
 				AF283A5027CE6E76000FF639 /* AppDelegate.swift in Sources */,
 				AF283A8F27CE9377000FF639 /* Content.swift in Sources */,
 				AF283A5227CE6E76000FF639 /* SceneDelegate.swift in Sources */,

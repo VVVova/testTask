@@ -36,7 +36,7 @@ extension ViewController : UITableViewDelegate{
             return
         }
         let title = dataSource[indexPath.row].author ?? ""
-        let vc = WebViewViewController(url: url, title: title)
+        let vc = WebViewViewController(url: url, title: title,article: [dataSource[indexPath.row]])
         let navCon = UINavigationController(rootViewController: vc)
         present(navCon, animated: true, completion: nil)
     }
@@ -60,16 +60,4 @@ extension ViewController : UITableViewDataSource{
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
-//    if let urlImage = dataSource[indexPath.row].urlToImage {
-//        getData(from: urlImage) { data, response, error in
-//            guard let data = data, error == nil else { return }
-//            print(response?.suggestedFilename ?? urlImage.lastPathComponent)
-//            print("Download Finished")
-//            // always update the UI from the main thread
-//            DispatchQueue.main.async {
-//                cell.imageCon.image = UIImage(data: data)
-//                tableView.cellForRow(at: indexPath)
-//            }
-//        }
-//    }
 }
