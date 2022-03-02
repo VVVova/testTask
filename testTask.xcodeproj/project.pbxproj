@@ -24,6 +24,8 @@
 		AF283A9B27CF92A3000FF639 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF283A9927CF92A3000FF639 /* Model.xcdatamodeld */; };
 		AF283A9D27CF97DD000FF639 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF283A9C27CF97DD000FF639 /* DataBase.swift */; };
 		AF283A9F27CFB17B000FF639 /* SelectedArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF283A9E27CFB17B000FF639 /* SelectedArticlesViewController.swift */; };
+		AF283AA227CFF93F000FF639 /* SwiftyMenu in Frameworks */ = {isa = PBXBuildFile; productRef = AF283AA127CFF93F000FF639 /* SwiftyMenu */; };
+		AF283AA427D0195B000FF639 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF283AA327D0195B000FF639 /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,7 @@
 		AF283A9A27CF92A3000FF639 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		AF283A9C27CF97DD000FF639 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		AF283A9E27CFB17B000FF639 /* SelectedArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedArticlesViewController.swift; sourceTree = "<group>"; };
+		AF283AA327D0195B000FF639 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF283AA227CFF93F000FF639 /* SwiftyMenu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +167,7 @@
 				AF283A5327CE6E76000FF639 /* ViewController.swift */,
 				AF283A9727CF8851000FF639 /* WebViewViewController.swift */,
 				AF283A9E27CFB17B000FF639 /* SelectedArticlesViewController.swift */,
+				AF283AA327D0195B000FF639 /* MenuViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -191,6 +196,9 @@
 			dependencies = (
 			);
 			name = testTask;
+			packageProductDependencies = (
+				AF283AA127CFF93F000FF639 /* SwiftyMenu */,
+			);
 			productName = testTask;
 			productReference = AF283A4C27CE6E76000FF639 /* testTask.app */;
 			productType = "com.apple.product-type.application";
@@ -263,6 +271,9 @@
 				Base,
 			);
 			mainGroup = AF283A4327CE6E76000FF639;
+			packageReferences = (
+				AF283AA027CFF93F000FF639 /* XCRemoteSwiftPackageReference "SwiftyMenu" */,
+			);
 			productRefGroup = AF283A4D27CE6E76000FF639 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -311,6 +322,7 @@
 				AF283A5427CE6E76000FF639 /* ViewController.swift in Sources */,
 				AF283A8C27CE8CE3000FF639 /* TableViewCell.swift in Sources */,
 				AF283A9B27CF92A3000FF639 /* Model.xcdatamodeld in Sources */,
+				AF283AA427D0195B000FF639 /* MenuViewController.swift in Sources */,
 				AF283A9F27CFB17B000FF639 /* SelectedArticlesViewController.swift in Sources */,
 				AF283A9D27CF97DD000FF639 /* DataBase.swift in Sources */,
 				AF283A5027CE6E76000FF639 /* AppDelegate.swift in Sources */,
@@ -514,7 +526,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -544,7 +556,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -664,6 +676,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AF283AA027CFF93F000FF639 /* XCRemoteSwiftPackageReference "SwiftyMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/KarimEbrahemAbdelaziz/SwiftyMenu";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AF283AA127CFF93F000FF639 /* SwiftyMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AF283AA027CFF93F000FF639 /* XCRemoteSwiftPackageReference "SwiftyMenu" */;
+			productName = SwiftyMenu;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		AF283A9927CF92A3000FF639 /* Model.xcdatamodeld */ = {

@@ -13,7 +13,6 @@ class SelectedArticlesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = getArticlesFromCoreData(nameEntity: "Article")
-        print(dataSource?[0])
         // Do any additional setup after loading the view.
     }
 }
@@ -22,9 +21,10 @@ extension SelectedArticlesViewController : UITableViewDelegate,UITableViewDataSo
         guard let cell = Bundle.main.loadNibNamed("TableViewCell", owner: self, options: nil)?.first as? TableViewCell else{
             return UITableViewCell()
         }
-        cell.title.text = dataSource?[indexPath.row].title ?? ""
-        cell.author.text = dataSource?[indexPath.row].author ?? ""
-        cell.source.text = "\(dataSource?[indexPath.row].source?.id ?? "" )  \(dataSource?[indexPath.row].source?.name ?? "" )"
+        cell.title.text =  dataSource?[indexPath.row].title ?? ""
+        cell.author.text = "Author : \(dataSource?[indexPath.row].author ?? "")"
+        cell.id.text = "ID  : \(dataSource?[indexPath.row].source?.id ?? "")"
+        cell.name.text = "Name  : \(dataSource?[indexPath.row].source?.name ?? "")"
         cell.descpript.text = dataSource?[indexPath.row].description ?? ""
         cell.imageUrl = dataSource?[indexPath.row].urlToImage
         return cell
@@ -42,7 +42,8 @@ extension SelectedArticlesViewController : UITableViewDelegate,UITableViewDataSo
         let navCon = UINavigationController(rootViewController: vc)
         present(navCon, animated: true, completion: nil)
     }
-    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+
+    }
 }
-extension SelectedArticlesViewController{
-}
+

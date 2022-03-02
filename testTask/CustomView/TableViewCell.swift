@@ -14,7 +14,8 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var author: UILabel!
     @IBOutlet weak var descpript: UILabel!
     @IBOutlet weak var imageCon: UIImageView!
-    @IBOutlet weak var source: UILabel!
+    @IBOutlet weak var id: UILabel!
+    @IBOutlet weak var name: UILabel!
     
     var imageUrl :URL?{
         didSet{
