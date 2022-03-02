@@ -32,6 +32,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="plN-0p-Pz6"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="qac-iW-6jY"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -44,6 +45,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PmU-Gv-SGa" secondAttribute="trailing" constant="10" id="in7-70-cOg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="PmU-Gv-SGa" id="lzq-92-USx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

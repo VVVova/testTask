@@ -7,12 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController{
+    var content = Content.init()
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        if !content.dataSource.isEmpty{
+            tableView.reloadData()
+        }
     }
 }
 extension ViewController : UITableViewDelegate{
@@ -20,7 +23,11 @@ extension ViewController : UITableViewDelegate{
 }
 extension ViewController : UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+         if content.dataSource.isEmpty{
+          return 1
+         }else{
+             return content.dataSource.count
+         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

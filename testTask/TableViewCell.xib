@@ -47,14 +47,18 @@
                                 <rect key="frame" x="160" y="0.0" width="160" height="143"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJy-Fw-8jX">
-                                        <rect key="frame" x="0.0" y="0.0" width="160" height="15"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8K1-sr-RGj">
-                                        <rect key="frame" x="0.0" y="15" width="160" height="128"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square.and.arrow.down.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8K1-sr-RGj">
+                                        <rect key="frame" x="0.0" y="20.5" width="160" height="20"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zf1-CV-mSI">
+                                        <rect key="frame" x="0.0" y="40.5" width="160" height="102.5"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="AddToSelected"/>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -77,4 +81,7 @@
             <point key="canvasLocation" x="140.57971014492756" y="-22.433035714285712"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
+    </resources>
 </document>
