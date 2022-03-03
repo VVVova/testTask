@@ -6,6 +6,7 @@
 //
 
 import Foundation
+//Parse Response
 struct Response : Codable{
     var status : String?
     var totalResults : Int?
@@ -26,7 +27,7 @@ struct Source : Codable{
     var id : String?
     var name : String?
 }
-
+// Parse frorm CoreData
 struct DataSourceArticle {
     var source : DataSourceSource?
     var author : String?

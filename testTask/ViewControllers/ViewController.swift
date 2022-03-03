@@ -6,24 +6,21 @@
 //
 
 import UIKit
-class ViewController: UIViewController,dataSourceProtocol{
+class ViewController: UIViewController{
     var content = Content.init()
-    func dataSourceIsLoaded(articles: [Articles]) {
-        dataSource = articles
-        DispatchQueue.main.async { [self] in
-            tableView.reloadData()
-        }
-    }
     var filtMethod : String = ""
-    override func viewDidAppear(_ animated: Bool) {
-    }
+    
     //DataSource
     var filteredDataSource : [Articles] = []
     var dataSource : [Articles] = []
+    var pickerData = ["no filtering","Sorting by publishedAt","Filtering by category","Filtering by country","Filtering by sources"]
+    
     //UIElements
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var pickerViewOutlet: UIPickerView!
     let refreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         searchBar.delegate = self
         content.dataSourseDelegate = self
@@ -37,17 +34,20 @@ class ViewController: UIViewController,dataSourceProtocol{
         self.pickerViewOutlet.delegate = self
         self.pickerViewOutlet.dataSource = self
     }
+    //OBJC
     @objc func refresh(_ sender: UIRefreshControl) {
         tableView.reloadData()
         refreshControl.endRefreshing()
     }
-    //piker view
-    
-    @IBOutlet weak var pickerViewOutlet: UIPickerView!
-    var pickerData = ["no filtering","Sorting by publishedAt","Filtering by category","Filtering by country","Filtering by sources"]
-    
 }
-
+extension ViewController : dataSourceProtocol{
+    func dataSourceIsLoaded(articles: [Articles]) {
+        dataSource = articles
+        DispatchQueue.main.async { [self] in
+            tableView.reloadData()
+        }
+    }
+}
 extension ViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let url = dataSource[indexPath.row].url else{
@@ -96,15 +96,11 @@ extension ViewController : UITableViewDataSource{
 }
 extension ViewController : UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        var articles : [Articles] = []
         filteredDataSource = dataSource.filter({( aricle : Articles) -> Bool in
             return aricle.title?.contains(searchText) ?? false
         })
-        print(filteredDataSource.count)
         tableView.reloadData()
-        
     }
-    
     func searchBarIsEmpty() -> Bool {
         return searchBar.text?.isEmpty ?? true
     }
@@ -162,7 +158,7 @@ extension ViewController : UIPickerViewDelegate,UIPickerViewDataSource{
         return pickerData[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        var filtMethod = pickerData[row]
+        let filtMethod = pickerData[row]
         sortAndFilter(method: filtMethod)
     }
     func sortAndFilter(method: String) {

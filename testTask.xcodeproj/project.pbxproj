@@ -25,7 +25,6 @@
 		AF283A9D27CF97DD000FF639 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF283A9C27CF97DD000FF639 /* DataBase.swift */; };
 		AF283A9F27CFB17B000FF639 /* SelectedArticlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF283A9E27CFB17B000FF639 /* SelectedArticlesViewController.swift */; };
 		AF283AA227CFF93F000FF639 /* SwiftyMenu in Frameworks */ = {isa = PBXBuildFile; productRef = AF283AA127CFF93F000FF639 /* SwiftyMenu */; };
-		AF283AA427D0195B000FF639 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF283AA327D0195B000FF639 /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +66,6 @@
 		AF283A9A27CF92A3000FF639 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		AF283A9C27CF97DD000FF639 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		AF283A9E27CFB17B000FF639 /* SelectedArticlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedArticlesViewController.swift; sourceTree = "<group>"; };
-		AF283AA327D0195B000FF639 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,12 +120,10 @@
 				AF283A4F27CE6E76000FF639 /* AppDelegate.swift */,
 				AF283A5127CE6E76000FF639 /* SceneDelegate.swift */,
 				AF283A9327CE96EA000FF639 /* ViewControllers */,
-				AF283A9427CE9707000FF639 /* CustomView */,
+				AF283A9427CE9707000FF639 /* CustomViews */,
 				AF283A9227CE96C1000FF639 /* DataSource */,
-				AF283A8B27CE8CE3000FF639 /* TableViewCell.xib */,
-				AF283A5527CE6E76000FF639 /* Main.storyboard */,
+				AF283AA627D0DB02000FF639 /* views */,
 				AF283A5827CE6E77000FF639 /* Assets.xcassets */,
-				AF283A5A27CE6E77000FF639 /* LaunchScreen.storyboard */,
 				AF283A5D27CE6E77000FF639 /* Info.plist */,
 				AF283A9927CF92A3000FF639 /* Model.xcdatamodeld */,
 			);
@@ -167,17 +163,26 @@
 				AF283A5327CE6E76000FF639 /* ViewController.swift */,
 				AF283A9727CF8851000FF639 /* WebViewViewController.swift */,
 				AF283A9E27CFB17B000FF639 /* SelectedArticlesViewController.swift */,
-				AF283AA327D0195B000FF639 /* MenuViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		AF283A9427CE9707000FF639 /* CustomView */ = {
+		AF283A9427CE9707000FF639 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
 				AF283A8A27CE8CE3000FF639 /* TableViewCell.swift */,
 			);
-			path = CustomView;
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		AF283AA627D0DB02000FF639 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				AF283A8B27CE8CE3000FF639 /* TableViewCell.xib */,
+				AF283A5527CE6E76000FF639 /* Main.storyboard */,
+				AF283A5A27CE6E77000FF639 /* LaunchScreen.storyboard */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,7 +327,6 @@
 				AF283A5427CE6E76000FF639 /* ViewController.swift in Sources */,
 				AF283A8C27CE8CE3000FF639 /* TableViewCell.swift in Sources */,
 				AF283A9B27CF92A3000FF639 /* Model.xcdatamodeld in Sources */,
-				AF283AA427D0195B000FF639 /* MenuViewController.swift in Sources */,
 				AF283A9F27CFB17B000FF639 /* SelectedArticlesViewController.swift in Sources */,
 				AF283A9D27CF97DD000FF639 /* DataBase.swift in Sources */,
 				AF283A5027CE6E76000FF639 /* AppDelegate.swift in Sources */,

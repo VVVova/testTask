@@ -8,8 +8,6 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-
-    
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var author: UILabel!
     @IBOutlet weak var descpript: UILabel!
@@ -23,13 +21,15 @@ class TableViewCell: UITableViewCell {
             updateUI()
         }
     }
-   static var imageData : Data? = nil
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+    static var imageData : Data? = nil
     private func updateUI(){
         if let url = imageUrl{
             DispatchQueue.global(qos: .userInteractive).async{
                 let conUrl = try? Data(contentsOf: url)
                 DispatchQueue.main.async {
                     if let imageData = conUrl{
+                        self.indicatorView.isHidden = true
                         self.imageCon.image = UIImage.init(data: imageData)
                         TableViewCell.imageData = imageData
                     }

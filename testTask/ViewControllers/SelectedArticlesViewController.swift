@@ -9,11 +9,11 @@ import UIKit
 import CoreData
 class SelectedArticlesViewController: UIViewController {
     var dataSource : [DataSourceArticle]? = []
+    var dataBase = DataBase.init()
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource = getArticlesFromCoreData(nameEntity: "Article")
-        // Do any additional setup after loading the view.
+        dataSource = dataBase.getArticlesFromCoreData(nameEntity: "Article")
     }
 }
 extension SelectedArticlesViewController : UITableViewDelegate,UITableViewDataSource{
@@ -37,13 +37,10 @@ extension SelectedArticlesViewController : UITableViewDelegate,UITableViewDataSo
             return
         }
         let title = dataSource?[indexPath.row].author ?? ""
-        var data = [dataSource?[indexPath.row]] ?? []
+        let data = [dataSource?[indexPath.row]]
         let vc = WebViewViewController(url: url, title: title, dataSourceArticle: data)
         let navCon = UINavigationController(rootViewController: vc)
         present(navCon, animated: true, completion: nil)
-    }
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-
     }
 }
 
