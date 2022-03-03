@@ -201,16 +201,10 @@ extension ViewController : UIPickerViewDelegate,UIPickerViewDataSource{
         }
     }
     func filterbyCountry(){
-        var countrys = ["Ukraine","America","Russia","Poland",]
-        var source : [Articles] = []
-        if dataSource.isEmpty{
-            source = filteredDataSource
-        }else{
-            source = dataSource
-        }
+        var countrys = ["Ukraine","U.S.","Russia","Poland",]
         var newsource : [Articles] = []
         for i in countrys{
-            let articles = source.filter { $0.description?.contains(i) as? Bool ?? false}
+            let articles = dataSource.filter { $0.description?.contains(i) as? Bool ?? false}
             newsource.append(contentsOf: articles)
         }
         filteredDataSource = newsource
