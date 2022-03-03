@@ -9,10 +9,10 @@ import Foundation
 import CoreData
 import WebKit
 class DataBase {
-    func save(articles:[Articles]) {
+    func save(articles:[Articles])->Bool{
       guard let appDelegate =
         UIApplication.shared.delegate as? AppDelegate else {
-        return
+        return false
       }
       let managedContext =
         appDelegate.persistentContainer.viewContext
@@ -22,9 +22,9 @@ class DataBase {
                                    in: managedContext)!
       let articlesObject = NSManagedObject(entity: entity,
                                    insertInto: managedContext)
-      saveArticles(articles: articles, object: articlesObject, context: managedContext)
+      return saveArticles(articles: articles, object: articlesObject, context: managedContext)
     }
-    func saveArticles(articles:[Articles],object:NSManagedObject,context:NSManagedObjectContext){
+    func saveArticles(articles:[Articles],object:NSManagedObject,context:NSManagedObjectContext)->Bool{
         for i in articles{
             object.setValue(i.source?.id ?? "", forKey: "id")
             object.setValue(i.source?.name ?? "", forKey: "name")
@@ -37,10 +37,13 @@ class DataBase {
             object.setValue(i.publishedAt, forKey: "publishedAt")
             do {
                 try context.save()
+                return true
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
+                return false
             }
         }
+        return false
     }
     func getArticlesFromCoreData(nameEntity:String)->[DataSourceArticle]?
     {

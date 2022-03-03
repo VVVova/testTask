@@ -66,7 +66,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="8Ia-W3-WWI">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="bookmarks" id="cfi-lv-IcG">
+                        <barButtonItem key="rightBarButtonItem" title="seved articles" style="plain" id="cfi-lv-IcG">
                             <connections>
                                 <segue destination="dwq-P8-2xR" kind="show" id="elY-IV-3Wz"/>
                             </connections>
