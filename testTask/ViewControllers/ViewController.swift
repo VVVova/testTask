@@ -180,6 +180,8 @@ extension ViewController : UIPickerViewDelegate,UIPickerViewDataSource{
         case "Filtering by category":
             break
         case "Filtering by country":
+            filterbyCountry()
+            tableView.reloadData()
             break
         case "Filtering by sources":
             fiterBySource()
@@ -191,12 +193,27 @@ extension ViewController : UIPickerViewDelegate,UIPickerViewDataSource{
     }
     func fiterBySource(){
         if !dataSource.isEmpty{
-            filteredDataSource =  dataSource.sorted(by: {$0.source?.name ?? "" < $1.source?.name ?? ""})
+            filteredDataSource =  dataSource.sorted(by: {$0.source?.name ?? "" < $1.source?.name ?? "" && $0.source?.id ?? "" < $1.source?.id ?? ""})
         }else{
             if !filteredDataSource.isEmpty{
-            filteredDataSource = filteredDataSource.sorted(by: {$0.source?.name ?? "" < $1.source?.name ?? ""})
+            filteredDataSource = filteredDataSource.sorted(by: {$0.source?.name ?? "" < $1.source?.name ?? "" && $0.source?.id ?? "" < $1.source?.id ?? "" })
             }
         }
+    }
+    func filterbyCountry(){
+        var countrys = ["Ukraine","America","Russia","Poland",]
+        var source : [Articles] = []
+        if dataSource.isEmpty{
+            source = filteredDataSource
+        }else{
+            source = dataSource
+        }
+        var newsource : [Articles] = []
+        for i in countrys{
+            let articles = source.filter { $0.description?.contains(i) as? Bool ?? false}
+            newsource.append(contentsOf: articles)
+        }
+        filteredDataSource = newsource
     }
 }
 /*

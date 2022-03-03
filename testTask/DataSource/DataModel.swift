@@ -22,6 +22,14 @@ struct Articles : Codable{
     var urlToImage : URL?
     var publishedAt : String?
     var content : String?
+    
+    static func ==(left:Articles,rigth:Articles)->Bool{
+        if left.description == rigth.description {
+            return true
+        }else{
+            return false
+        }
+    }
 }
 struct Source : Codable{
     var id : String?
