@@ -6,8 +6,11 @@
 //
 
 import UIKit
-
+protocol sortingEventDelegate{
+    func sort(method:String)
+}
 class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    static var shared = MenuViewController()
     var filters : [String] = ["Sorting by publishedAt","Filtering by category","Filtering by country","Filtering by sources"]
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell  = tableView.dequeueReusableCell(withIdentifier: "cell") else{
@@ -22,8 +25,10 @@ class MenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedMethod = filters[indexPath.row]
         prepare(for: UIStoryboardSegue.init(identifier: "menu", source: MenuViewController(), destination: ViewController()), sender: nil)
+        sortEventDelegate?.sort(method: selectedMethod)
         self.dismiss(animated: true, completion: nil)
     }
+    var sortEventDelegate : sortingEventDelegate? = nil
     var selectedMethod : String = ""
 
     @IBOutlet weak var tableView: UITableView!

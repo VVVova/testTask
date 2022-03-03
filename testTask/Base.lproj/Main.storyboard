@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PmU-Gv-SGa">
-                                <rect key="frame" x="10" y="195" width="394" height="618"/>
+                                <rect key="frame" x="10" y="231" width="394" height="582"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="customCell" id="ZBs-94-F8F" customClass="TableViewCell" customModule="testTask" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="394" height="43.5"/>
@@ -41,30 +41,25 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5A-U2-IZE">
-                                <rect key="frame" x="20" y="156" width="124" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Filters"/>
-                                <connections>
-                                    <action selector="selectFilerDataSource:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wWs-zr-BT6"/>
-                                    <segue destination="DhN-zo-zjd" kind="popover" popoverAnchorView="N5A-U2-IZE" id="UeZ-UO-qNt">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ld-qc-mif">
+                                <rect key="frame" x="0.0" y="139" width="283" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Djs-N9-fa6"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="3ld-qc-mif" firstAttribute="top" secondItem="ov0-Lr-vbw" secondAttribute="bottom" id="275-8J-wTP"/>
                             <constraint firstItem="ov0-Lr-vbw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3VV-ch-Bjy"/>
-                            <constraint firstItem="N5A-U2-IZE" firstAttribute="top" secondItem="ov0-Lr-vbw" secondAttribute="bottom" constant="17" id="F04-7g-NSu"/>
+                            <constraint firstItem="PmU-Gv-SGa" firstAttribute="top" secondItem="3ld-qc-mif" secondAttribute="bottom" constant="12" id="3aw-5P-PIJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3ld-qc-mif" secondAttribute="trailing" constant="131" id="5fm-9e-zli"/>
+                            <constraint firstItem="3ld-qc-mif" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Irc-vR-bEX"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PmU-Gv-SGa" secondAttribute="bottom" id="LcM-E2-8xg"/>
                             <constraint firstItem="PmU-Gv-SGa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="OfU-dp-xqb"/>
-                            <constraint firstItem="N5A-U2-IZE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="bG9-jm-Kwa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PmU-Gv-SGa" secondAttribute="trailing" constant="10" id="in7-70-cOg"/>
                             <constraint firstItem="ov0-Lr-vbw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pdo-CX-glV"/>
-                            <constraint firstItem="PmU-Gv-SGa" firstAttribute="top" secondItem="N5A-U2-IZE" secondAttribute="bottom" constant="8" id="ph4-gl-VKz"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N5A-U2-IZE" secondAttribute="trailing" constant="270" id="sEd-Yw-spE"/>
                             <constraint firstItem="ov0-Lr-vbw" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="whC-Z5-S7w"/>
                         </constraints>
                     </view>
@@ -79,8 +74,8 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="pickerViewOutlet" destination="3ld-qc-mif" id="bNJ-dK-H19"/>
                         <outlet property="searchBar" destination="ov0-Lr-vbw" id="2cW-kY-dkN"/>
-                        <outlet property="selectFilerDataSourceOutlet" destination="N5A-U2-IZE" id="ajd-xj-Lsy"/>
                         <outlet property="tableView" destination="PmU-Gv-SGa" id="lzq-92-USx"/>
                     </connections>
                 </viewController>
@@ -138,11 +133,11 @@
             <objects>
                 <viewController storyboardIdentifier="menu" id="DhN-zo-zjd" customClass="MenuViewController" customModule="testTask" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Bx-E2-jPK">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="543"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="597"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vk6-JK-iwe">
-                                <rect key="frame" x="0.0" y="0.0" width="500" height="509"/>
+                                <rect key="frame" x="0.0" y="44" width="500" height="519"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="OMj-fh-Oyp">

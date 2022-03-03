@@ -10,28 +10,12 @@ class ViewController: UIViewController,dataSourceProtocol{
     var content = Content.init()
     func dataSourceIsLoaded(articles: [Articles]) {
         dataSource = articles
-        sortingByPublishedAt()
         DispatchQueue.main.async { [self] in
             tableView.reloadData()
         }
     }
     var filtMethod : String = ""
-    var sortingbyPublishedAt : [Articles]  = []
-    func sortingByPublishedAt(){
-        var convertedArray: [Date] = []
-        var dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"// yyyy-MM-dd"
-
-        for dat in dataSource {
-            let date = dateFormatter.date(from: dat.publishedAt ?? "")
-            if let date = date {
-                convertedArray.append(date)
-            }
-        }
-        var ready = convertedArray.sorted(by: { $0.compare($1) == .orderedDescending })
-    }
     override func viewDidAppear(_ animated: Bool) {
-        print(sortingbyPublishedAt)
     }
     //DataSource
     var filteredDataSource : [Articles] = []
@@ -50,31 +34,18 @@ class ViewController: UIViewController,dataSourceProtocol{
         swipeDown.delegate = self
         swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
         self.tableView.addGestureRecognizer(swipeDown)
-        setupGestures()
+        self.pickerViewOutlet.delegate = self
+        self.pickerViewOutlet.dataSource = self
     }
     @objc func refresh(_ sender: UIRefreshControl) {
         tableView.reloadData()
         refreshControl.endRefreshing()
     }
+    //piker view
     
-    @IBOutlet weak var selectFilerDataSourceOutlet: UIButton!
-    @IBAction func selectFilerDataSource(_ sender: Any) {
-    }
-    private func setupGestures(){
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        tapGesture.numberOfTapsRequired = 1
-        selectFilerDataSourceOutlet.addGestureRecognizer(tapGesture)
-    }
-    @objc func tapped(){
-        guard let popVC = storyboard?.instantiateViewController(withIdentifier: "menu") else {return}
-        popVC.modalPresentationStyle = .popover
-        let popOverVC = popVC.popoverPresentationController
-        popOverVC?.delegate = self
-        popOverVC?.sourceView = selectFilerDataSourceOutlet
-        popOverVC?.sourceRect = CGRect.init(x: self.selectFilerDataSourceOutlet.bounds.midX, y: self.selectFilerDataSourceOutlet.bounds.minY, width: 0, height: 0)
-        popVC.preferredContentSize = CGSize(width: 350, height: 250)
-        self.present(popVC, animated: true, completion: nil)
-    }
+    @IBOutlet weak var pickerViewOutlet: UIPickerView!
+    var pickerData = ["no filtering","Sorting by publishedAt","Filtering by category","Filtering by country","Filtering by sources"]
+    
 }
 
 extension ViewController : UITableViewDelegate{
@@ -146,8 +117,111 @@ extension ViewController: UIGestureRecognizerDelegate{
             view.endEditing(true)
     }
 }
-extension ViewController : UIPopoverPresentationControllerDelegate{
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .none
+//sorting
+extension ViewController{
+    func sortingByPublishedAt()->[Articles]{
+        var sourse : [Articles] = []
+        if !filteredDataSource.isEmpty{
+            sourse = filteredDataSource
+        }else{
+            sourse = dataSource
+        }
+        var convertedArray: [Date] = []
+        var sortingDataSource : [Articles] = []
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"// yyyy-MM-dd"
+
+        for dat in sourse {
+            let date = dateFormatter.date(from: dat.publishedAt ?? "")
+            if let date = date {
+                convertedArray.append(date)
+            }
+        }
+        let ready = convertedArray.sorted(by: { $0.compare($1) == .orderedDescending })
+        for date in ready{
+            let strDate = dateFormatter.string(from: date)
+            for art in sourse{
+                if art.publishedAt == strDate{
+                    sortingDataSource.append(art)
+                }
+            }
+        }
+        return sortingDataSource
     }
 }
+//filtering
+extension ViewController : UIPickerViewDelegate,UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+        // The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        var filtMethod = pickerData[row]
+        sortAndFilter(method: filtMethod)
+    }
+    func sortAndFilter(method: String) {
+        switch method{
+        case "no filtering":
+            filteredDataSource = []
+            tableView.reloadData()
+        case "Sorting by publishedAt":
+            if !dataSource.isEmpty {
+                filteredDataSource = sortingByPublishedAt()
+                tableView.reloadData()
+            }
+        default:
+            filtering(by: method)
+        }
+    }
+    func filtering(by:String){
+        switch by{
+        case "Filtering by category":
+            break
+        case "Filtering by country":
+            break
+        case "Filtering by sources":
+            fiterBySource()
+            tableView.reloadData()
+            break
+        default:
+            break
+        }
+    }
+    func fiterBySource(){
+        if !dataSource.isEmpty{
+            filteredDataSource =  dataSource.sorted(by: {$0.source?.name ?? "" < $1.source?.name ?? ""})
+        }else{
+            if !filteredDataSource.isEmpty{
+            filteredDataSource = filteredDataSource.sorted(by: {$0.source?.name ?? "" < $1.source?.name ?? ""})
+            }
+        }
+    }
+}
+/*
+ private func setupGestures(){
+     let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
+     tapGesture.numberOfTapsRequired = 1
+     selectFilerDataSourceOutlet.addGestureRecognizer(tapGesture)
+ }
+ @objc func tapped(){
+     guard let popVC = storyboard?.instantiateViewController(withIdentifier: "menu") else {return}
+     popVC.modalPresentationStyle = .popover
+     let popOverVC = popVC.popoverPresentationController
+     popOverVC?.delegate = self
+     popOverVC?.sourceView = selectFilerDataSourceOutlet
+     popOverVC?.sourceRect = CGRect.init(x: self.selectFilerDataSourceOutlet.bounds.midX, y: self.selectFilerDataSourceOutlet.bounds.minY, width: 0, height: 0)
+     popVC.preferredContentSize = CGSize(width: 350, height: 250)
+     self.present(popVC, animated: true, completion: nil)
+ extension ViewController : UIPopoverPresentationControllerDelegate{
+     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+         return .none
+     }
+ }
+ }
+ */
