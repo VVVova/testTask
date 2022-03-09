@@ -13,7 +13,7 @@ class ViewController: UIViewController{
     //DataSource
     var filteredDataSource : [Articles] = []
     var dataSource : [Articles] = []
-    var pickerData = ["no filtering","Sorting by publishedAt","Filtering by category","Filtering by country","Filtering by sources"]
+    var pickerData = ["no filtering","Sorting by publishedAt","Filtering by sources"]
     
     //UIElements
     @IBOutlet weak var searchBar: UISearchBar!

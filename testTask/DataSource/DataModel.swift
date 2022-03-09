@@ -10,8 +10,7 @@ import Foundation
 struct Response : Codable{
     var status : String?
     var totalResults : Int?
-    var articles : [Articles]
-    
+    var articles : [Articles]    
 }
 struct Articles : Codable{
     let source : Source?
